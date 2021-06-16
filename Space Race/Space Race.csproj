@@ -89,5 +89,11 @@
   <ItemGroup>
     <None Include="Resources\Game_Music.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_beginning.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\service-bell_daniel_simion.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -81,9 +81,27 @@ namespace Space_Race.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream pacman_beginning {
+            get {
+                return ResourceManager.GetStream("pacman_beginning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Points {
             get {
                 return ResourceManager.GetStream("Points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream service_bell_daniel_simion {
+            get {
+                return ResourceManager.GetStream("service_bell_daniel_simion", resourceCulture);
             }
         }
     }

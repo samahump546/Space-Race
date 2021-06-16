@@ -108,17 +108,18 @@ namespace Space_Race
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-
             //move player 1 & player 2
 
             if (wDown == true && player1.Y > 0)
             {
                 player1.Y -= playerSpeed;
+                
             }
 
             if (sDown == true && player1.Y < this.Height - player1.Height)
             {
                 player1.Y += playerSpeed;
+                
             }
 
             if (upArrowDown == true && player2.Y > 0)
@@ -183,7 +184,7 @@ namespace Space_Race
 
             //check if players collide with top wall, reset players to start position
             //add points to player who collided with top wall
-            if (player1.Y == 0 || player1.Y > this.Height - player1.Height)
+            if (player1.Y == 0)
             {
                 player1Score++;
                 p1ScoreLabel.Text = $"{player1Score}";
@@ -191,10 +192,12 @@ namespace Space_Race
                 player1.X = 250;
                 player1.Y = 400;
 
-                SoundPlayer music = new SoundPlayer(Properties.Resources.Points);
-                music.Play();
+                SoundPlayer player = new SoundPlayer(Properties.Resources.service_bell_daniel_simion);
+                player.Play();
+
+
             }
-            else if (player2.Y == 0 || player2.Y > this.Height - player2.Height)
+            else if (player2.Y == 0)
             {
                 player2Score++;
                 p2ScoreLabel.Text = $"{player2Score}";
@@ -202,8 +205,10 @@ namespace Space_Race
                 player2.X = 450;
                 player2.Y = 400;
 
-                SoundPlayer song = new SoundPlayer(Properties.Resources.Points);
-                song.Play();
+                SoundPlayer player = new SoundPlayer(Properties.Resources.service_bell_daniel_simion);
+                player.Play();
+
+
             }
 
             //check score and stop game if either player is at 5
@@ -216,8 +221,7 @@ namespace Space_Race
                 startButton.Text = "Play Again?";
                 gameState = "over";
 
-                SoundPlayer audio = new SoundPlayer(Properties.Resources.Game_Over);
-                audio.Play();
+                
             }
             else if (player2Score == 5)
             {
@@ -228,8 +232,7 @@ namespace Space_Race
                 startButton.Text = "Play Again?";
                 gameState = "over";
 
-                SoundPlayer audio = new SoundPlayer(Properties.Resources.Game_Over);
-                audio.Play();
+                
             }
 
             Refresh();
