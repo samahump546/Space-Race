@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Space_Race
 {
@@ -48,6 +49,8 @@ namespace Space_Race
             //Clear screen
             startButton.Visible = false;
             titleLabel.Visible = false;
+
+            
 
             GameInitialize();
         }
@@ -105,7 +108,8 @@ namespace Space_Race
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //move player 1
+
+            //move player 1 & player 2
 
             if (wDown == true && player1.Y > 0)
             {
@@ -131,7 +135,7 @@ namespace Space_Race
             //check to see if asteroids need to be created
             randValue = randGen.Next(0, 101);
 
-            if (randValue > 0)
+            if (randValue > 70)
             {
                 int y = randGen.Next(10, this.Width - asteroidSize * 2);
                 asteroids.Add(new Rectangle(20, y, asteroidSize, asteroidSize));
@@ -179,35 +183,53 @@ namespace Space_Race
 
             //check if players collide with top wall, reset players to start position
             //add points to player who collided with top wall
-            if (player1.Y < 0 || player1.Y > this.Height + player1.Height)
+            if (player1.Y == 0 || player1.Y > this.Height - player1.Height)
             {
                 player1Score++;
                 p1ScoreLabel.Text = $"{player1Score}";
 
                 player1.X = 250;
                 player1.Y = 400;
+
+                SoundPlayer music = new SoundPlayer(Properties.Resources.Points);
+                music.Play();
             }
-            else if (player2.Y < 0 || player2.Y > this.Height + player2.Height)
+            else if (player2.Y == 0 || player2.Y > this.Height - player2.Height)
             {
                 player2Score++;
                 p2ScoreLabel.Text = $"{player2Score}";
 
                 player2.X = 450;
                 player2.Y = 400;
+
+                SoundPlayer song = new SoundPlayer(Properties.Resources.Points);
+                song.Play();
             }
 
             //check score and stop game if either player is at 5
             if (player1Score == 5)
             {
                 gameTimer.Enabled = false;
+                titleLabel.Visible = true;
+                startButton.Visible = true;
                 titleLabel.Text = "GAME OVER!";
+                startButton.Text = "Play Again?";
                 gameState = "over";
+
+                SoundPlayer audio = new SoundPlayer(Properties.Resources.Game_Over);
+                audio.Play();
             }
             else if (player2Score == 5)
             {
                 gameTimer.Enabled = false;
+                titleLabel.Visible = true;
+                startButton.Visible = true;
                 titleLabel.Text = "GAME OVER!";
+                startButton.Text = "Play Again?";
                 gameState = "over";
+
+                SoundPlayer audio = new SoundPlayer(Properties.Resources.Game_Over);
+                audio.Play();
             }
 
             Refresh();
@@ -257,6 +279,8 @@ namespace Space_Race
             asteroids.Clear();
             asteroidColour.Clear();
             asteroidSpeeds.Clear();
+
+            this.Focus();
         }
     }
 }
